@@ -1,6 +1,6 @@
 import './App.css';
 import { connect } from 'react-redux';
-import { anotherName } from './actions/myaction';
+import { anotherName, addWishAction } from './actions/myaction';
 
 function App(props) {
   console.log("App props = ", props);
@@ -8,19 +8,20 @@ function App(props) {
     <div className="App">
       <h3>I am from App js</h3>
       <h3>Name : {props.myname}</h3>
-      <h3>Wishes : {props.mywishes?props.mywishes.map(item => {
+      <h4>Wishes : {props.mywishes ? props.mywishes.map(item => {
          // console.log("item=", item);
           return (
-              <li>
-                <ul>Item : {item}</ul>
-              </li>)
-      }):[]}</h3>
+              <div>{item}</div>
+               )
+      }):[]}</h4>
       <button onClick={()=>{
           console.log("btn clicked..!!");
           let name = "honey";
          // name === "honey" ? name="Amrit" : name="honey"; //toggle
           props.changeName(name) //, ['w3', 'w4', 'w5'])
       }}>Change Name</button>
+
+      <button onClick={()=>props.addWish("w5")}>Add wish</button>
     </div>
   );
 }
@@ -29,14 +30,15 @@ function App(props) {
 const mapStateToProps = (state) => {
   return {
     myname : state.name,
-    mywishes : state.wishes
+    mywishes : state.wish
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     //changeName : (name) => { dispatch(anotherName(name)) }
-    changeName : () => { dispatch(anotherName()) }
+    changeName : () => { dispatch(anotherName()) },
+    addWish : (wish) => {dispatch(addWishAction(wish))}
   }
 }
 

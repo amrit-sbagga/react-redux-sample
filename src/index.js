@@ -3,13 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import reducer from './reducers/myreducer';
+//import reducer from './reducers/myreducer';
+import nameReducer from './reducers/nameReducer';
+import wishReducer from './reducers/wishReducer'
+
+const masterReducer = combineReducers({
+    name : nameReducer,
+    wish : wishReducer
+})
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducer, composeEnhancers(
+const store = createStore(masterReducer, {name : "Amrit", wish:['w1', 'w2']}, composeEnhancers(
     applyMiddleware(thunk)
  ));
 

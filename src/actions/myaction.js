@@ -31,3 +31,10 @@ export const anotherName = () => {
         
     }
 }
+
+export const addWishAction = (wish) => {
+    return {
+        type: 'ADD_WISH',
+        payload : wish
+    }
+}
