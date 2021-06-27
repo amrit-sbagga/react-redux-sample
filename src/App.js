@@ -35,7 +35,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeName : (name) => { dispatch(anotherName(name)) }
+    //changeName : (name) => { dispatch(anotherName(name)) }
+    changeName : () => { dispatch(anotherName()) }
   }
 }
 
