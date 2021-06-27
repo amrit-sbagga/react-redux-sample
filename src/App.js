@@ -1,5 +1,6 @@
 import './App.css';
 import { connect } from 'react-redux';
+import { anotherName } from './actions/myaction';
 
 function App(props) {
   console.log("App props = ", props);
@@ -18,7 +19,7 @@ function App(props) {
           console.log("btn clicked..!!");
           let name = "honey";
          // name === "honey" ? name="Amrit" : name="honey"; //toggle
-          props.changeName(name, ['w3', 'w4', 'w5'])
+          props.changeName(name) //, ['w3', 'w4', 'w5'])
       }}>Change Name</button>
     </div>
   );
@@ -34,7 +35,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeName : (name, mywishes) => { dispatch({type:'CHANGE_NAME', payload: name}) }
+    changeName : (name) => { dispatch(anotherName(name)) }
   }
 }
 
